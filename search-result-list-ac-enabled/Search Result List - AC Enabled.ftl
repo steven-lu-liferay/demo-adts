@@ -6,6 +6,8 @@
 	</#if>
 </div>
 
+<#assign entryClassToAssetTypeMap = {"com.liferay.document.library.kernel.model.DLFileEntry" : "document"} />
+
 <div class="display-list">
 	<ul class="list-group" id="search-results-display-list">
 		<#if entries?has_content>
@@ -165,18 +167,24 @@
 								class="c-mt-2 lfr-portal-tooltip"
 								title="${languageUtil.format(locale, 'download-x', ['(' + languageUtil.formatStorageSize(entry.getAssetRendererDownloadSize(), locale) + ')'])}"
 							>
+							<#assign acTypeFound = entryClassToAssetTypeMap[entry.getClassName()]?has_content />
+							<#if acTypeFound>
 							<span 
 					      data-analytics-asset-action="download"
 								data-analytics-asset-id="${entry.getClassPK()}"
 								data-analytics-asset-title="${entry.getHighlightedTitle()}"
-								data-analytics-asset-type="document"
+								data-analytics-asset-type="${entryClassToAssetTypeMap[entry.getClassName()]}"
 							>
+							</#if>
+								
 								<a class="link-secondary link-monospaced link-outline link-outline-borderless link-outline-secondary" href="${entry.getAssetRendererURLDownload()}">
 									<svg class="lexicon-icon lexicon-icon-download" role="presentation">
 										<use xlink:href="https://webserver-lctl3commerce-prd.lfr.cloud/o/dialect-theme/images/clay/icons.svg#download"></use>
 									</svg>
 								</a>
+							<#if acTypeFound>
 							</span>
+							</#if>
 							</span>
 						</div>
 					</#if>
