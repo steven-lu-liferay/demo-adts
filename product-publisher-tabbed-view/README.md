@@ -12,5 +12,5 @@ Tab 2 (Product Documents): A list of attachments with download button (rendered 
 
 <ul>
 	<i>Some CSS rules are using Dialect Theme variables.</i>
-	<i>Need Font Awesome CSS classes for the download button. An alternative is to change the download button to a Clay Icon.</i>
+	<i>References Font Awesome CSS classes for the download button. An alternative is to change the download button to a Clay Icon.</i>
 </ul>
